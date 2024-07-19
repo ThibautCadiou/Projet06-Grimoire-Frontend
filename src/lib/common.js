@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import { API_ROUTES } from '../utils/constants';
 
@@ -42,6 +43,7 @@ export async function getBooks() {
     });
     // eslint-disable-next-line array-callback-return
     const books = formatBooks(response.data);
+
     return books;
   } catch (err) {
     console.error(err);
@@ -121,10 +123,12 @@ export async function addBook(data) {
     author: data.author,
     year: data.year,
     genre: data.genre,
-    ratings: [{
-      userId,
-      grade: data.rating ? parseInt(data.rating, 10) : 0,
-    }],
+    ratings: [
+      {
+        userId,
+        grade: data.rating ? parseInt(data.rating, 10) : 0,
+      },
+    ],
     averageRating: parseInt(data.rating, 10),
   };
   const bodyFormData = new FormData();
@@ -157,7 +161,6 @@ export async function updateBook(data, id) {
     year: data.year,
     genre: data.genre,
   };
-  console.log(data.file[0]);
   if (data.file[0]) {
     newData = new FormData();
     newData.append('book', JSON.stringify(book));

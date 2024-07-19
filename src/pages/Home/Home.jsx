@@ -1,3 +1,5 @@
+/* eslint-disable no-confusing-arrow */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,7 +12,8 @@ function Home() {
   const [books, setBooks] = useState(null);
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line max-len
-  const displayBooks = () => (books ? books.map((book) => <BookItem size={2} book={book} key={book.id} />) : <h1>Vide</h1>);
+  const displayBooks = () =>
+    books ? books.map((book) => <BookItem size={2} book={book} key={book.id} />) : <h1>Vide</h1>;
 
   useEffect(() => {
     async function getBooksList() {
@@ -34,7 +37,9 @@ function Home() {
             + Ajouter un livre
           </Link>
         </header>
-        <section className={styles.bookList}>{loading ? <h1>Chargement</h1> : displayBooks()}</section>
+        <section className={styles.bookList}>
+          {loading ? <h1>Chargement</h1> : displayBooks()}
+        </section>
       </main>
     </div>
   );
